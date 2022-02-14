@@ -4,9 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/drawable/btn_facebook.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/drawable/btn_facebook_background.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/drawable/btn_google.xml" value="0.1685185185185185" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.2064814814814815" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/drawable/ic_baseline_rice_bowl_24.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/drawable/ic_bowl.xml" value="0.20277777777777778" />
         <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/drawable/ic_launcher_background.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/layout/activity_login.xml" value="0.22909090412549746" />
         <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/layout/activity_main.xml" value="0.10208333333333333" />
         <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/layout/activity_signed_in.xml" value="0.1" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/layout/fragment_list.xml" value="0.1" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/layout/fragment_map.xml" value="0.10885416666666667" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/layout/fragment_work_mate.xml" value="0.10885416666666667" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/layout/item_restaurants.xml" value="0.23999999479814021" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/layout/item_workmate.xml" value="0.23999999479814021" />
+        <entry key="..\:/Users/PC/Documents/p7_bachmann_fabrice/go4lunch/app/src/main/res/menu/menu_bottom_nav.xml" value="0.221875" />
       </map>
     </option>
   </component>
