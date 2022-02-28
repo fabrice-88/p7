@@ -3,21 +3,21 @@ package com.fabrice.go4lunch.service;
 import com.fabrice.go4lunch.model.Restaurant;
 import com.fabrice.go4lunch.model.User;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class FakeApiService implements ApiService {
 
-    private final List<Restaurant> mRestaurants = FakeGenerator.generateRestaurant();
-    private final List<User> mUsers = FakeGenerator.generateUser();
-
+    private final ArrayList<Restaurant> mRestaurants = FakeGenerator.generateRestaurant();
+    private final ArrayList<User> mUsers = FakeGenerator.generateUser();
 
     @Override
-    public List<Restaurant> getRestau() {
+    public ArrayList<Restaurant> getRestaurants() {
         return mRestaurants;
     }
 
     @Override
-    public List<User> getUser() {
+    public ArrayList<User> getUser() {
         return mUsers;
     }
+
 }

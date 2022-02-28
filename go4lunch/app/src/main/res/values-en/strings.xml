@@ -1,3 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call">CALL</string>
+    <string name="like">LIKE</string>
+    <string name="website">WEBSITE</string>
+    <string name="go4lunch">Go4Lunch</string>
+    <string name="username">USERNAME</string>
+    <string name="email">email</string>
+    <string name="background">background</string>
+    <string name="avatar">avatar</string>
+    <string name="go4lunch_logo">go4lunch_logo</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="info_address">Info address</string>
+    <string name="your_lunch">YOUR LUNCH</string>
+    <string name="settings">SETTINGS</string>
+    <string name="logout">LOGOUT</string>
+    <string name="fab_to_find_my_location">fab_to_find_my_location</string>
 </resources>

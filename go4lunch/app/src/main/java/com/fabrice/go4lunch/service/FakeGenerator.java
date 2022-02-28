@@ -9,27 +9,27 @@ import java.util.List;
 
 public class FakeGenerator {
 
-    public static List<Restaurant> LIST_RESTAU = Arrays.asList(
-        new Restaurant(1,"Le Zinc", "12 rue du Faubourg Poissonnière", "8h00-22h00", "120m"),
-        new Restaurant(2,"Le Zinc", "12 rue du Faubourg Poissonnière", "8h00-22h00", "120m"),
-        new Restaurant(3,"Le Zinc", "12 rue du Faubourg Poissonnière", "8h00-22h00", "120m"),
-        new Restaurant(4,"Le Zinc", "12 rue du Faubourg Poissonnière", "8h00-22h00", "120m"),
-        new Restaurant(5,"Le Zinc", "12 rue du Faubourg Poissonnière", "8h00-22h00", "120m")
+    public static List<Restaurant> LIST_RESTAURANTS = Arrays.asList(
+        new Restaurant(1,"Le Zinc", "12 Rue du Faubourg Poissonnière", "8h00-22h00", "120m", "https://i.pravatar.cc/150?u=a042581f4e29026703"),
+        new Restaurant(2,"Le Zinc", "12 Rue du Faubourg Poissonnière", "8h00-22h00", "120m", "https://i.pravatar.cc/150?u=a042581f4e29026703"),
+        new Restaurant(3,"Le Zinc", "12 Rue du Faubourg Poissonnière", "8h00-22h00", "120m", "https://i.pravatar.cc/150?u=a042581f4e29026703"),
+        new Restaurant(4,"Le Zinc", "12 Rue du Faubourg Poissonnière", "8h00-22h00", "120m", "https://i.pravatar.cc/150?u=a042581f4e29026703"),
+        new Restaurant(5,"Le Zinc", "12 Rue du Faubourg Poissonnière", "8h00-22h00", "120m", "https://i.pravatar.cc/150?u=a042581f4e29026703")
     );
 
     public static List<User> LIST_USER = Arrays.asList(
-            new User(1,"TOTO", "12 rue du Faubourg Poissonnière", "Le Zinc", true),
-            new User(2,"TITI", "12 rue du Faubourg Poissonnière", "Le Zinc", true),
-            new User(3,"TATA", "12 rue du Faubourg Poissonnière", "Le Zinc", true),
-            new User(4,"KIKI", "12 rue du Faubourg Poissonnière", "Le Zinc", true),
-            new User(5,"KOKO", "12 rue du Faubourg Poissonnière", "Le Zinc", true)
+            new User(1,"TOTO", "https://i.pravatar.cc/150?u=a042581f4e29026703b", "Le Zinc", true),
+            new User(2,"TITI", "https://i.pravatar.cc/150?u=a042581f4e29026703b", "Le Zinc", true),
+            new User(3,"TATA", "https://i.pravatar.cc/150?u=a042581f4e29026703b", "Le Zinc", true),
+            new User(4,"KIKI", "https://i.pravatar.cc/150?u=a042581f4e29026703b", "Le Zinc", true),
+            new User(5,"KOKO", "https://i.pravatar.cc/150?u=a042581f4e29026703b", "Le Zinc", true)
     );
 
-    static List<Restaurant> generateRestaurant() {
-        return new ArrayList<>(LIST_RESTAU);
+    static ArrayList<Restaurant> generateRestaurant() {
+        return new ArrayList<>(LIST_RESTAURANTS);
     }
 
-    static List<User> generateUser() {
+    static ArrayList<User> generateUser() {
         return new ArrayList<>(LIST_USER);
     }
 }

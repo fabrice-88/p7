@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Details {
+public class ResultPlacesDetails {
 
     @SerializedName("place_id")
     @Expose
@@ -45,7 +45,7 @@ public class Details {
     @Expose
     private final List<DetailsPhoto> photos;
 
-    public Details(String place_id, DetailsGeometry geometry, String name, DetailsOpeningHours opening_hours, String website, String phone_number, String address, Float rating, List<DetailsPhoto> photos) {
+    public ResultPlacesDetails(String place_id, DetailsGeometry geometry, String name, DetailsOpeningHours opening_hours, String website, String phone_number, String address, Float rating, List<DetailsPhoto> photos) {
         this.place_id = place_id;
         this.geometry = geometry;
         this.name = name;
@@ -61,7 +61,9 @@ public class Details {
         return place_id;
     }
 
-    public DetailsGeometry getGeometry() { return geometry; }
+    public DetailsGeometry getGeometry() {
+        return geometry;
+    }
 
     public Location getLocation() {
         Location location = new Location("");
@@ -94,5 +96,7 @@ public class Details {
         return rating;
     }
 
-    public List<DetailsPhoto> getPhotos() { return photos; }
+    public List<DetailsPhoto> getPhotos() {
+        return photos;
+    }
 }

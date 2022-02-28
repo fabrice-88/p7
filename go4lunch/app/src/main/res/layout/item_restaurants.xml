@@ -25,7 +25,7 @@
                 tools:ignore="NestedWeights">
 
                 <TextView
-                    android:id="@+id/RestaurantName"
+                    android:id="@+id/txtRestaurantName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -35,10 +35,9 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/RestaurantDistance"
+                    android:id="@+id/txtRestaurantDistance"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="end"
                     android:layout_weight="0.8"
                     android:gravity="center_vertical"
                     android:text="0m" />
@@ -51,7 +50,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/RestaurantAddress"
+                    android:id="@+id/txtRestaurantAddress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -59,13 +58,12 @@
                     android:text="Adress" />
 
                 <TextView
-                    android:id="@+id/NbPeopleEating"
+                    android:id="@+id/txtNbPeopleEating"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.8"
                     android:drawableStart="@drawable/ic_outline_person_24"
-                    android:gravity="center_vertical"
-                    android:visibility="invisible" />
+                    android:gravity="center_vertical" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,7 +73,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/OpeningHours"
+                    android:id="@+id/txtOpeningHours"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2"
@@ -84,11 +82,13 @@
                     android:textStyle="italic" />
 
                 <ImageView
-                    android:id="@+id/RestaurantRating"
+                    android:id="@+id/imgRestaurantRating"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.8"
                     android:paddingEnd="8dp"
+
+                    android:src="@drawable/ic_twotone_star_24"
                     tools:ignore="ContentDescription,RtlSymmetry" />
 
             </LinearLayout>
@@ -96,7 +96,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/RestaurantPhoto"
+            android:id="@+id/imgRestaurantPhoto"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.25"

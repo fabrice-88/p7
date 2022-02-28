@@ -21,32 +21,26 @@ import com.fabrice.go4lunch.viewmodel.ViewModelFactory;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ListFragment extends Fragment {
+public class RestaurantFragment extends Fragment {
 
     ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     RestaurantViewModel mRestaurantViewModel;
     RecyclerView mRecyclerView;
 
-    public static ListFragment newInstance() {
-        return (new ListFragment());
+    public static RestaurantFragment newInstance() {
+        return (new RestaurantFragment());
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private void initData(){
-        //mRestaurantViewModel = new ViewModelProvider(requireActivity()).get(RestaurantViewModel.class);
         mRestaurantViewModel = new ViewModelProvider(requireActivity(), ViewModelFactory.getInstance()).get(RestaurantViewModel.class);
         mRestaurantViewModel.initRestaurant();
-
         mRestaurantViewModel.getMutableLiveDataRestaurant().observe(requireActivity(), restaurants -> {
             mRestaurants.clear();
             mRestaurants.addAll(restaurants);
             Objects.requireNonNull(mRecyclerView.getAdapter()).notifyDataSetChanged();
-                });
-    }
 
-    private void initViewModel(){
-        RestaurantViewModel restaurantViewModel = new ViewModelProvider(this, ViewModelFactory.getInstance()).get(RestaurantViewModel.class);
-        restaurantViewModel.initRestaurant();
+        });
     }
 
     private void initRecyclerView(View root) {
@@ -59,7 +53,7 @@ public class ListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_list, container, false);
+        View root = inflater.inflate(R.layout.fragment_restaurant, container, false);
         initRecyclerView(root);
         initData();
         return root;

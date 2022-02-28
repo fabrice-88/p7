@@ -8,7 +8,7 @@ import com.fabrice.go4lunch.repository.Repository;
 
 import java.util.ArrayList;
 
-public class UserViewModel extends ViewModel {
+public class WorkmateViewModel extends ViewModel {
 
     Repository mRepository;
     MutableLiveData<ArrayList<User>> mUser;
@@ -17,7 +17,7 @@ public class UserViewModel extends ViewModel {
         return mUser;
     }
 
-    public UserViewModel(Repository repository){
+    public WorkmateViewModel(Repository repository){
         mRepository = repository;
         mUser = new MutableLiveData<>();
     }

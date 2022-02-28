@@ -1,2 +1,6 @@
-package com.fabrice.go4lunch.model;public class PlaceAutoCompletePrediction {
+package com.fabrice.go4lunch.model;
+
+public class PlaceAutoCompletePrediction {
+
+
 }

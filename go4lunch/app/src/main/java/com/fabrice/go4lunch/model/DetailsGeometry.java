@@ -3,17 +3,17 @@ package com.fabrice.go4lunch.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Geometry {
+public class DetailsGeometry {
 
     @SerializedName("location")
     @Expose
-    private final Location location;
+    private final DetailsLocation location;
 
-    public Geometry(Location location) {
+    public DetailsGeometry(DetailsLocation location) {
         this.location = location;
     }
 
-    public Location getLocation() {
+    public DetailsLocation getLocation() {
         return location;
     }
 }

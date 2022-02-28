@@ -5,14 +5,14 @@ public class User {
     private Integer uid;
     private String firstname;
     private String photoUrl;
-    private String choosedRestaurantId;
+    private String RestaurantId;
     private Boolean notificationActive;
 
-    public User(Integer uid, String firstname, String photoUrl, String choosedRestaurantId, Boolean notificationActive) {
+    public User(Integer uid, String firstname, String photoUrl, String RestaurantId, Boolean notificationActive) {
         this.uid = uid;
         this.firstname = firstname;
         this.photoUrl = photoUrl;
-        this.choosedRestaurantId = choosedRestaurantId;
+        this.RestaurantId = RestaurantId;
         this.notificationActive = notificationActive;
     }
 
@@ -40,12 +40,12 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
-    public String getChoosedRestaurantId() {
-        return choosedRestaurantId;
+    public String getRestaurantId() {
+        return RestaurantId;
     }
 
-    public void setChoosedRestaurantId(String choosedRestaurantId) {
-        this.choosedRestaurantId = choosedRestaurantId;
+    public void setRestaurantId(String RestaurantId) {
+        this.RestaurantId = RestaurantId;
     }
 
     public Boolean isNotificationActive() {
@@ -55,5 +55,4 @@ public class User {
     public void setNotificationActive(Boolean notificationActive) {
         this.notificationActive = notificationActive;
     }
-
 }

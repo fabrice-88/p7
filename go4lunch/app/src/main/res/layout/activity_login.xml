@@ -14,7 +14,6 @@
         android:scrollX="30dp"
         android:src="@drawable/picture_lunch" />
 
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="300dp"
@@ -27,7 +26,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_bowl"
         tools:ignore="RtlSymmetry" />
-
 
     <TextView
         android:id="@+id/name_app"
@@ -57,28 +55,29 @@
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/btn_facebook"
         app:icon="@drawable/icon_fb"
+        android:theme="@style/Theme.AppCompat"
         android:text="@string/sign_in_with_facebook"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slogan" />
-
+        app:layout_constraintTop_toBottomOf="@id/slogan"
+        app:layout_constraintBottom_toTopOf="@id/btn_google"/>
 
     <Button
         android:id="@+id/btn_google"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/btn_google"
         app:icon="@drawable/icon_google"
         android:text="@string/sign_in_with_google"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_fb" />
-
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

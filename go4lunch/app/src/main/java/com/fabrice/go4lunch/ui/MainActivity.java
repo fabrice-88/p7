@@ -1,22 +1,33 @@
 package com.fabrice.go4lunch.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.fabrice.go4lunch.R;
 import com.fabrice.go4lunch.databinding.ActivityMainBinding;
-import com.fabrice.go4lunch.fragment.ListFragment;
+import com.fabrice.go4lunch.fragment.RestaurantFragment;
 import com.fabrice.go4lunch.fragment.MapFragment;
 import com.fabrice.go4lunch.fragment.WorkMateFragment;
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.material.navigation.NavigationView;
 
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ActivityMainBinding mBinding;
+    private Toolbar mToolbar;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,47 +35,90 @@ public class MainActivity extends AppCompatActivity {
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = mBinding.getRoot();
         setContentView(view);
-        replaceFragment(MapFragment.newInstance());
+        configureToolBar();
+        configureDrawerLayout();
+        configureNavigationView();
         configureBottomView();
+        replaceFragment(MapFragment.newInstance());
     }
 
-
-    private void configureBottomView(){
+    private void configureBottomView() {
         mBinding.bottomNavigation.setOnItemSelectedListener(item -> updateMainFragment(item.getItemId()));
     }
 
-
     @SuppressLint("NonConstantResourceId")
-    private Boolean updateMainFragment(Integer id){
+    private Boolean updateMainFragment(Integer id) {
         switch (id) {
             case R.id.map:
+                mBinding.activityMainToolbar.setTitle("I'm Hungry!");
+                //startActivity(new Intent(MainActivity.this, MapActivity.class));
                 replaceFragment(MapFragment.newInstance());
                 break;
             case R.id.list:
-                replaceFragment(ListFragment.newInstance());
+                mBinding.activityMainToolbar.setTitle("I'm Hungry!");
+                replaceFragment(RestaurantFragment.newInstance());
                 break;
             case R.id.workmates:
+                mBinding.activityMainToolbar.setTitle("Available workmates");
                 replaceFragment(WorkMateFragment.newInstance());
         }
         return true;
     }
 
-
-   /* public void onClick(View v) {
-        if (v.getId() == R.id.sign_out) {
+    public void onClick(View v) {
+        if (v.getId() == R.id.activity_main_toolbar) {
             AuthUI.getInstance()
                     .signOut(this)
                     .addOnCompleteListener(task -> {
-                        // user is now signed out
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         finish();
                     });
         }
-    }*/
-
+    }
 
     private void replaceFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
     }
 
+    private void configureToolBar(){
+        this.mToolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
+        setSupportActionBar(mToolbar);
+    }
+
+    private void configureDrawerLayout(){
+        this.mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    private void configureNavigationView(){
+        this.mNavigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.activity_main_drawer_yourLunch:
+                break;
+            case R.id.activity_main_drawer_settings:
+                break;
+            case R.id.activity_main_drawer_logout:
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(task -> {
+                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                            finish();
+                        });
+                break;
+        }
+
+        this.mDrawerLayout.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
 }

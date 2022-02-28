@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             new FirebaseAuthUIActivityResultContract(),
             (result) -> {
                 if (result.getResultCode() == RESULT_OK) {
-                   startActivity(new Intent(this, MainActivity.class));
+                    startActivity(new Intent(this, MainActivity.class));
                     finish();
                     Toast.makeText(this, "success de connexion", Toast.LENGTH_SHORT).show();
 
@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                         new AuthUI.IdpConfig.FacebookBuilder().build(),
                         new AuthUI.IdpConfig.GoogleBuilder().build()))
                 .setAuthMethodPickerLayout(customLayout)
+                .setTheme(R.style.AppTheme_NoActionBar)
                 .build();
         signInLauncher.launch(signInIntent);
     }
