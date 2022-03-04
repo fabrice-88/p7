@@ -7,15 +7,19 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ResultPlacesDetails {
+public class RestaurantsDetails {
 
     @SerializedName("place_id")
     @Expose
     private final String place_id;
 
+    @SerializedName("type")
+    @Expose
+    private final String type;
+
     @SerializedName("geometry")
     @Expose
-    private final DetailsGeometry geometry;
+    private final Geometry geometry;
 
     @SerializedName("name")
     @Expose
@@ -23,7 +27,7 @@ public class ResultPlacesDetails {
 
     @SerializedName("opening_hours")
     @Expose
-    private final DetailsOpeningHours opening_hours;
+    private final OpeningHours opening_hours;
 
     @SerializedName("website")
     @Expose
@@ -39,14 +43,15 @@ public class ResultPlacesDetails {
 
     @SerializedName("rating")
     @Expose
-    private Float rating;
+    private final Float rating;
 
     @SerializedName("photos")
     @Expose
-    private final List<DetailsPhoto> photos;
+    private final List<Photo> photos;
 
-    public ResultPlacesDetails(String place_id, DetailsGeometry geometry, String name, DetailsOpeningHours opening_hours, String website, String phone_number, String address, Float rating, List<DetailsPhoto> photos) {
+    public RestaurantsDetails(String place_id, String type, Geometry geometry, String name, OpeningHours opening_hours, String website, String phone_number, String address, Float rating, List<Photo> photos) {
         this.place_id = place_id;
+        this.type = type;
         this.geometry = geometry;
         this.name = name;
         this.opening_hours = opening_hours;
@@ -61,7 +66,7 @@ public class ResultPlacesDetails {
         return place_id;
     }
 
-    public DetailsGeometry getGeometry() {
+    public Geometry getGeometry() {
         return geometry;
     }
 
@@ -76,7 +81,7 @@ public class ResultPlacesDetails {
         return name;
     }
 
-    public DetailsOpeningHours getOpening_hours() {
+    public OpeningHours getOpening_hours() {
         return opening_hours;
     }
 
@@ -96,7 +101,7 @@ public class ResultPlacesDetails {
         return rating;
     }
 
-    public List<DetailsPhoto> getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 }

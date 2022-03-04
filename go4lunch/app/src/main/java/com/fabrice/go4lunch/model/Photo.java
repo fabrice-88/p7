@@ -3,6 +3,7 @@ package com.fabrice.go4lunch.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetailsPhoto {
@@ -15,14 +16,19 @@ public class DetailsPhoto {
     @Expose
     private final Integer width;
 
-    @SerializedName("photo")
+    @SerializedName("html_attributions")
     @Expose
-    private final String photo;
+    private final List<String> html_attributions = new ArrayList<>();
 
-    public DetailsPhoto(Integer height, Integer width, List<String> html_attributions, String photo) {
+    @SerializedName("photo_reference")
+    @Expose
+    private final String photo_reference;
+
+    public DetailsPhoto(Integer height, Integer width, List<String> html_attributions, String photo_reference) {
         this.height = height;
         this.width = width;
-        this.photo = photo;
+        this.html_attributions = html_attributions;
+        this.photo_reference = photo_reference;
     }
 
     public String getPhoto() {
