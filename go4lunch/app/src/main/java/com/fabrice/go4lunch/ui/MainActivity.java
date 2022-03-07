@@ -22,12 +22,14 @@ import com.fabrice.go4lunch.fragment.WorkMateFragment;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ActivityMainBinding mBinding;
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
-    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (id) {
             case R.id.map:
                 mBinding.activityMainToolbar.setTitle("I'm Hungry!");
-                //startActivity(new Intent(MainActivity.this, MapActivity.class));
                 replaceFragment(MapFragment.newInstance());
                 break;
             case R.id.list:
@@ -65,36 +66,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void onClick(View v) {
-        if (v.getId() == R.id.activity_main_toolbar) {
-            AuthUI.getInstance()
-                    .signOut(this)
-                    .addOnCompleteListener(task -> {
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                        finish();
-                    });
-        }
-    }
-
     private void replaceFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, fragment).commit();
     }
 
     private void configureToolBar(){
-        this.mToolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
+        this.mToolbar = findViewById(R.id.activity_main_toolbar);
         setSupportActionBar(mToolbar);
     }
 
     private void configureDrawerLayout(){
-        this.mDrawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
+        this.mDrawerLayout = findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
     }
 
     private void configureNavigationView(){
-        this.mNavigationView = (NavigationView) findViewById(R.id.activity_main_nav_view);
-        mNavigationView.setNavigationItemSelectedListener(this);
+        NavigationView navigationView = findViewById(R.id.activity_main_nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")

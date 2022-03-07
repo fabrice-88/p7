@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailsPhoto {
+public class Photo {
 
     @SerializedName("height")
     @Expose
@@ -18,13 +18,13 @@ public class DetailsPhoto {
 
     @SerializedName("html_attributions")
     @Expose
-    private final List<String> html_attributions = new ArrayList<>();
+    private  List<String> html_attributions = new ArrayList<>();
 
     @SerializedName("photo_reference")
     @Expose
     private final String photo_reference;
 
-    public DetailsPhoto(Integer height, Integer width, List<String> html_attributions, String photo_reference) {
+    public Photo(Integer height, Integer width, List<String> html_attributions, String photo_reference) {
         this.height = height;
         this.width = width;
         this.html_attributions = html_attributions;
@@ -32,6 +32,6 @@ public class DetailsPhoto {
     }
 
     public String getPhoto() {
-        return photo;
+        return photo_reference;
     }
 }

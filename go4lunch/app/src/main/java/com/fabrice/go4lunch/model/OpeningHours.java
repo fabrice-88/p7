@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class DetailsOpeningHours {
+public class OpeningHours {
 
     @SerializedName("open_now")
     @Expose
@@ -13,9 +13,9 @@ public class DetailsOpeningHours {
 
     @SerializedName("periods")
     @Expose
-    private final List<DetailsOpeningHoursPeriod> periods;
+    private final List<OpeningHoursPeriod> periods;
 
-    public DetailsOpeningHours(Boolean open_now, List<DetailsOpeningHoursPeriod> periods) {
+    public OpeningHours(Boolean open_now, List<OpeningHoursPeriod> periods) {
         this.open_now = open_now;
         this.periods = periods;
     }
@@ -24,5 +24,5 @@ public class DetailsOpeningHours {
         return open_now;
     }
 
-    public List<DetailsOpeningHoursPeriod> getPeriods() { return periods; }
+    public List<OpeningHoursPeriod> getPeriods() { return periods; }
 }

@@ -3,7 +3,7 @@ package com.fabrice.go4lunch.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DetailsLocation {
+public class Location {
 
     @SerializedName("lat")
     @Expose
@@ -13,7 +13,7 @@ public class DetailsLocation {
     @Expose
     private final Double lng;
 
-    public DetailsLocation(Double lat, Double lng) {
+    public Location(Double lat, Double lng) {
         this.lat = lat;
         this.lng = lng;
     }

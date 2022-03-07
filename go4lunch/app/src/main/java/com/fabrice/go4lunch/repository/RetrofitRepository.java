@@ -1,28 +1,41 @@
 package com.fabrice.go4lunch.repository;
 
 
-import androidx.lifecycle.LiveData;
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.fabrice.go4lunch.model.ResultPlacesDetails;
-import com.fabrice.go4lunch.service.RetrofitService;
+import com.fabrice.go4lunch.BuildConfig;
+import com.fabrice.go4lunch.model.PlacesResults;
+import com.fabrice.go4lunch.model.Result;
+import com.fabrice.go4lunch.service.GoogleMapAPI;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RetrofitRepository {
 
-    private final RetrofitService mRetrofitService;
-    private final MutableLiveData<List<ResultPlacesDetails>> mResultPlacesDetails = new MutableLiveData<>(new ArrayList<>());
+    private final GoogleMapAPI mGoogleMapAPI;
 
-    public RetrofitRepository(RetrofitService retrofitService) {
-        mRetrofitService = retrofitService;
+    public RetrofitRepository(GoogleMapAPI googleMapAPI) {
+        this.mGoogleMapAPI = googleMapAPI;
     }
 
-    public LiveData<List<ResultPlacesDetails>> getResultPlacesDetailsLiveData() {
-        return mResultPlacesDetails;
+    public MutableLiveData <List<Result>> getPlaceResultsLiveData() {
+        MutableLiveData <List<Result>> PlaceResultsMutableLiveData = new MutableLiveData<>();
+        mGoogleMapAPI.getNearby(1000, "restaurant", BuildConfig.MAPS_API_KEY).enqueue(new Callback<PlacesResults>() {
+                @Override
+                public void onResponse(@NonNull Call<PlacesResults> call, @NonNull Response<PlacesResults> response) {
+                    assert response.body() != null;
+                    PlaceResultsMutableLiveData.setValue(response.body().getResults());
+                }
+                @Override
+                public void onFailure(@NonNull Call<PlacesResults> call, @NonNull Throwable t) {
+                    PlaceResultsMutableLiveData.setValue(null);
+                }
+            });
+        return PlaceResultsMutableLiveData;
     }
-
-
-
 }

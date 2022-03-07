@@ -3,26 +3,26 @@ package com.fabrice.go4lunch.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DetailsOpeningHoursPeriod {
+public class OpeningHoursPeriod {
 
     @SerializedName("close")
     @Expose
-    private final DetailsOpeningHoursPeriodCloseOpen close;
+    private final OpeningHoursPeriodCloseOpen close;
 
     @SerializedName("open")
     @Expose
-    private final DetailsOpeningHoursPeriodCloseOpen open;
+    private final OpeningHoursPeriodCloseOpen open;
 
-    public DetailsOpeningHoursPeriod(DetailsOpeningHoursPeriodCloseOpen close, DetailsOpeningHoursPeriodCloseOpen open) {
+    public OpeningHoursPeriod(OpeningHoursPeriodCloseOpen close, OpeningHoursPeriodCloseOpen open) {
         this.close = close;
         this.open = open;
     }
 
-    public DetailsOpeningHoursPeriodCloseOpen getClose() {
+    public OpeningHoursPeriodCloseOpen getClose() {
         return close;
     }
 
-    public DetailsOpeningHoursPeriodCloseOpen getOpen() {
+    public OpeningHoursPeriodCloseOpen getOpen() {
         return open;
     }
 }

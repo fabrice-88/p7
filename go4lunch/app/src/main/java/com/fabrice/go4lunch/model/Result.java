@@ -1,13 +1,12 @@
 package com.fabrice.go4lunch.model;
 
-import android.location.Location;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class RestaurantsDetails {
+public class Result {
 
     @SerializedName("place_id")
     @Expose
@@ -49,7 +48,7 @@ public class RestaurantsDetails {
     @Expose
     private final List<Photo> photos;
 
-    public RestaurantsDetails(String place_id, String type, Geometry geometry, String name, OpeningHours opening_hours, String website, String phone_number, String address, Float rating, List<Photo> photos) {
+    public Result(String place_id, String type, Geometry geometry, String name, OpeningHours opening_hours, String website, String phone_number, String address, Float rating, List<Photo> photos) {
         this.place_id = place_id;
         this.type = type;
         this.geometry = geometry;
@@ -66,15 +65,12 @@ public class RestaurantsDetails {
         return place_id;
     }
 
-    public Geometry getGeometry() {
-        return geometry;
+    public String getType() {
+        return type;
     }
 
-    public Location getLocation() {
-        Location location = new Location("");
-        location.setLatitude(geometry.getLocation().getLat());
-        location.setLongitude(geometry.getLocation().getLng());
-        return location;
+    public Geometry getGeometry() {
+        return geometry;
     }
 
     public String getName() {

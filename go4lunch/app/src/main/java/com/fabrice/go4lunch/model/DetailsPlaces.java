@@ -11,9 +11,9 @@ public class DetailsPlaces {
 
     @SerializedName("details")
     @Expose
-    private final ResultPlacesDetails details;
+    private final PlacesResults details;
 
-    public DetailsPlaces(String status, ResultPlacesDetails details) {
+    public DetailsPlaces(String status, PlacesResults details) {
         this.status = status;
         this.details = details;
     }
@@ -22,7 +22,7 @@ public class DetailsPlaces {
         return status;
     }
 
-    public ResultPlacesDetails getDetails() {
+    public PlacesResults getDetails() {
         return details;
     }
 }
