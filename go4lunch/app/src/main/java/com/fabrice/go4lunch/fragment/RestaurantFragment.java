@@ -53,41 +53,41 @@ public class RestaurantFragment extends Fragment {
         return (new RestaurantFragment());
     }
 
-//    @SuppressLint("NotifyDataSetChanged")
-//    private void initData() {
-//        mRestaurantViewModel = new ViewModelProvider(requireActivity(), ViewModelFactory.getInstance()).get(RestaurantViewModel.class);
-//        mRestaurantViewModel.initRestaurant();
-//        mRestaurantViewModel.getMutableLiveDataRestaurant().observe(requireActivity(), restaurants -> {
-//            mRestaurants.clear();
-//            mRestaurants.addAll(restaurants);
-//            System.out.println("VALEUR DE mRestaurants = "+ mRestaurants);
-//
-//            Objects.requireNonNull(mRecyclerView.getAdapter()).notifyDataSetChanged();
-//        });
-//    }
+    @SuppressLint("NotifyDataSetChanged")
+    private void initData() {
+        mRestaurantViewModel = new ViewModelProvider(requireActivity(), ViewModelFactory.getInstance()).get(RestaurantViewModel.class);
+        mRestaurantViewModel.initRestaurant();
+        mRestaurantViewModel.getMutableLiveDataRestaurant().observe(requireActivity(), restaurants -> {
+            mRestaurants.clear();
+            mRestaurants.addAll(restaurants);
+            System.out.println("VALEUR DE mRestaurants = "+ mRestaurants);
 
-//    private void initRecyclerView(View root) {
-//        mRecyclerView = root.findViewById(R.id.list_rv);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//        mRecyclerView.setLayoutManager(layoutManager);
-//        //RestaurantAdapter mAdapter = new RestaurantAdapter(mRestaurants);
-//        RestaurantAdapter mAdapter = new RestaurantAdapter(mResults);
-//        mRecyclerView.setAdapter(mAdapter);
-//    }
-
-    private void initView() {
-        buttonSearch = buttonSearch.findViewById(R.id.buttonShowLocation);
-        buttonSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                buttonSearch_onClick(view);
-            }
+            Objects.requireNonNull(mRecyclerView.getAdapter()).notifyDataSetChanged();
         });
-        listViewPlaces = listViewPlaces.findViewById(R.id.list_rv);
     }
 
-    private void buttonSearch_onClick(View view) {
+    private void initRecyclerView(View root) {
+        mRecyclerView = root.findViewById(R.id.list_rv);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+        RestaurantAdapter mAdapter = new RestaurantAdapter(mRestaurants);
+//        RestaurantAdapter mAdapter = new RestaurantAdapter(mResults);
+        mRecyclerView.setAdapter(mAdapter);
+    }
 
+//    private void initView() {
+//        buttonSearch = buttonSearch.findViewById(R.id.buttonShowLocation);
+//        buttonSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                buttonSearch_onClick(view);
+//            }
+//        });
+//        listViewPlaces = listViewPlaces.findViewById(R.id.list_rv);
+//    }
+
+//    private void buttonSearch_onClick(View view) {
+//
 //        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 //            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 //            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2 * 1000, 1, locationListener);
@@ -99,13 +99,13 @@ public class RestaurantFragment extends Fragment {
 //                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 13);
 //            }
 //        }
+//
+//    }
 
-    }
-
-    private LocationListener locationListener = new LocationListener() {
-
-        @Override
-        public void onLocationChanged(Location location) {
+//    private LocationListener locationListener = new LocationListener() {
+//
+//        @Override
+//        public void onLocationChanged(Location location) {
 //            String key = getText(BuildConfig.MAPS_API_KEY);
 //            String currentLocation = location.getLatitude() + "," + location.getLongitude();
 //            int radius = 1500;
@@ -142,16 +142,16 @@ public class RestaurantFragment extends Fragment {
 //
 //        @Override
 //        public void onProviderDisabled(String s) {
-
-        }
-    };
+//
+//        }
+//    };
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_restaurant, container, false);
-//        initRecyclerView(root);
-//        initData();
+        initRecyclerView(root);
+        initData();
         return root;
     }
 }

@@ -48,7 +48,11 @@ public class Result {
     @Expose
     private final List<Photo> photos;
 
-    public Result(String place_id, String type, Geometry geometry, String name, OpeningHours opening_hours, String website, String phone_number, String address, Float rating, List<Photo> photos) {
+    @SerializedName("vicinity")
+    @Expose
+    private String vicinity;
+
+    public Result(String place_id, String type, Geometry geometry, String name, OpeningHours opening_hours, String website, String phone_number, String address, Float rating, List<Photo> photos, String vicinity) {
         this.place_id = place_id;
         this.type = type;
         this.geometry = geometry;
@@ -59,6 +63,11 @@ public class Result {
         this.address = address;
         this.rating = rating;
         this.photos = photos;
+        this.vicinity = vicinity;
+    }
+
+    public String getVicinity() {
+        return vicinity;
     }
 
     public String getPlace_id() {

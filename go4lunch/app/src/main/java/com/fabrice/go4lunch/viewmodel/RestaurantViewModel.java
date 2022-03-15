@@ -1,5 +1,7 @@
 package com.fabrice.go4lunch.viewmodel;
 
+import android.location.Location;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -29,9 +31,11 @@ public class RestaurantViewModel extends ViewModel {
         mRestaurantList = new MutableLiveData<>();
     }
 
-    public void initListRestaurantMutableLiveData() {
-        PlaceResultsMutableLiveData = mRetrofitRepository.getPlaceResultsLiveData();
-    }
+//    public void initListRestaurantMutableLiveData() {
+//        PlaceResultsMutableLiveData = mRetrofitRepository.getPlaceResultsLiveData();
+//    }
+
+
 
     public void initRestaurant(){
         ArrayList<Restaurant> restaurants = mRepository.getRestaurants();

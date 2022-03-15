@@ -1,6 +1,8 @@
 package com.fabrice.go4lunch.repository;
 
 
+import android.location.Location;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
@@ -23,19 +25,21 @@ public class RetrofitRepository {
         this.mGoogleMapAPI = googleMapAPI;
     }
 
-    public MutableLiveData <List<Result>> getPlaceResultsLiveData() {
-        MutableLiveData <List<Result>> PlaceResultsMutableLiveData = new MutableLiveData<>();
-        mGoogleMapAPI.getNearby(1000, "restaurant", BuildConfig.MAPS_API_KEY).enqueue(new Callback<PlacesResults>() {
-                @Override
-                public void onResponse(@NonNull Call<PlacesResults> call, @NonNull Response<PlacesResults> response) {
-                    assert response.body() != null;
-                    PlaceResultsMutableLiveData.setValue(response.body().getResults());
-                }
-                @Override
-                public void onFailure(@NonNull Call<PlacesResults> call, @NonNull Throwable t) {
-                    PlaceResultsMutableLiveData.setValue(null);
-                }
-            });
+    public MutableLiveData<List<Result>> getPlaceResultsLiveData(Location location) {
+        MutableLiveData<List<Result>> PlaceResultsMutableLiveData = new MutableLiveData<>();
+        String locationFormatted = location.getLatitude()+"," + location.getLongitude();
+        mGoogleMapAPI.getNearby(locationFormatted,1000, "restaurant", BuildConfig.MAPS_API_KEY).enqueue(new Callback<PlacesResults>() {
+            @Override
+            public void onResponse(@NonNull Call<PlacesResults> call, @NonNull Response<PlacesResults> response) {
+                assert response.body() != null;
+                PlaceResultsMutableLiveData.setValue(response.body().getResults());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<PlacesResults> call, @NonNull Throwable t) {
+                PlaceResultsMutableLiveData.setValue(null);
+            }
+        });
         return PlaceResultsMutableLiveData;
     }
 }

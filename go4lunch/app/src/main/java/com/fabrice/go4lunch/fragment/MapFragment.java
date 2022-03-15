@@ -3,6 +3,8 @@ package com.fabrice.go4lunch.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -28,6 +31,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.karumi.dexter.Dexter;
@@ -49,6 +53,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private final RetrofitRepository mRetrofitRepository = new RetrofitRepository(APIClient.getGoogleMapAPI());
     private static final float DEFAULT_ZOOM = 15;
     private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
+
     public static MapFragment newInstance() {
         return (new MapFragment());
     }
@@ -83,6 +88,30 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                                 mLocation = task.getResult();
                                 if (mLocation != null) {
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), DEFAULT_ZOOM));
+
+                                    mRetrofitRepository.getPlaceResultsLiveData(mLocation).observe(requireActivity(), restaurants -> {
+                                        System.out.println("VALEUR DE LOCATION = " + mLocation);
+
+                                        try {
+                                            mMap.clear();
+                                            for (Result r : restaurants) {
+                                                double lat = r.getGeometry().getLocation().getLat();
+                                                System.out.println("VALEUR DE LATITUDE = " + lat);
+                                                double lng = r.getGeometry().getLocation().getLng();
+                                                System.out.println("VALEUR DE LONGITUDE = " + lng);
+                                                String name = r.getName();
+                                                System.out.println("VALEUR DE NAME = " + name);
+                                                MarkerOptions markerOptions = new MarkerOptions();
+                                                LatLng latLng = new LatLng(lat, lng);
+                                                markerOptions.position(latLng);
+                                                markerOptions.title(name);
+                                                mMap.addMarker(markerOptions);
+                                            }
+                                        } catch (Exception e) {
+                                            Log.d("onResponse", "There is an error");
+                                            e.printStackTrace();
+                                        }
+                                    });
                                 } else {
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
                                     mMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -102,28 +131,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
+
+
         mMap = googleMap;
-        getCurrentLocation();
-        mRetrofitRepository.getPlaceResultsLiveData().observe(requireActivity(), restaurants -> {
-            try {
-                mMap.clear();
-                for (Result r : restaurants) {
-                    double lat = r.getGeometry().getLocation().getLat();
-                    System.out.println("VALEUR DE LATITUDE = " + lat);
-                    double lng = r.getGeometry().getLocation().getLng();
-                    System.out.println("VALEUR DE LONGITUDE = " + lng);
-                    String name = r.getName();
-                    System.out.println("VALEUR DE NAME = " + name);
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    LatLng latLng = new LatLng(lat, lng);
-                    markerOptions.position(latLng);
-                    markerOptions.title(name);
-                    mMap.addMarker(markerOptions);
-                }
-            } catch (Exception e) {
-                Log.d("onResponse", "There is an error");
-                e.printStackTrace();
+        try {
+            // Customise the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            boolean success = mMap.setMapStyle(
+                  MapStyleOptions.loadRawResourceStyle(
+                            getContext(), R.raw.mapstyle));
+            if (!success) {
+                Log.e("MapFragment", "Style parsing failed.");
             }
-        });
+
+
+        } catch (Resources.NotFoundException e) {
+            Log.e("MapFragment", "Can't find style. Error: ", e);
+        }
+        getCurrentLocation();
     }
 }

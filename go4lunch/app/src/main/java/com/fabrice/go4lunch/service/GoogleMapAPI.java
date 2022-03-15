@@ -1,5 +1,7 @@
 package com.fabrice.go4lunch.service;
 
+import android.location.Location;
+
 import com.fabrice.go4lunch.model.DetailsPlaces;
 import com.fabrice.go4lunch.model.PlacesResults;
 
@@ -13,7 +15,6 @@ public interface GoogleMapAPI {
     Call<PlacesResults> getNearby(@Query("location") String location,
                                   @Query("radius") int radius,
                                   @Query("type") String type,
-                                  @Query("keyword") String keyword,
                                   @Query("key") String key);
 
     @GET("details/json")
