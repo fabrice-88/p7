@@ -88,19 +88,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                                 mLocation = task.getResult();
                                 if (mLocation != null) {
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), DEFAULT_ZOOM));
-
                                     mRetrofitRepository.getPlaceResultsLiveData(mLocation).observe(requireActivity(), restaurants -> {
-                                        System.out.println("VALEUR DE LOCATION = " + mLocation);
-
                                         try {
                                             mMap.clear();
                                             for (Result r : restaurants) {
                                                 double lat = r.getGeometry().getLocation().getLat();
-                                                System.out.println("VALEUR DE LATITUDE = " + lat);
                                                 double lng = r.getGeometry().getLocation().getLng();
-                                                System.out.println("VALEUR DE LONGITUDE = " + lng);
                                                 String name = r.getName();
-                                                System.out.println("VALEUR DE NAME = " + name);
                                                 MarkerOptions markerOptions = new MarkerOptions();
                                                 LatLng latLng = new LatLng(lat, lng);
                                                 markerOptions.position(latLng);
@@ -120,7 +114,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                             }
                         });
                     }
-
                     @Override
                     public void onPermissionDenied(PermissionDeniedResponse response) {/* ... */}
 
@@ -131,23 +124,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
-
-
         mMap = googleMap;
-        try {
-            // Customise the styling of the base map using a JSON object defined
-            // in a raw resource file.
-            boolean success = mMap.setMapStyle(
-                  MapStyleOptions.loadRawResourceStyle(
-                            getContext(), R.raw.mapstyle));
-            if (!success) {
-                Log.e("MapFragment", "Style parsing failed.");
-            }
-
-
-        } catch (Resources.NotFoundException e) {
-            Log.e("MapFragment", "Can't find style. Error: ", e);
-        }
         getCurrentLocation();
     }
 }

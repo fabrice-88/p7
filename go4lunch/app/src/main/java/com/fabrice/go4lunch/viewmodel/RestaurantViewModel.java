@@ -9,6 +9,7 @@ import com.fabrice.go4lunch.model.Restaurant;
 import com.fabrice.go4lunch.model.Result;
 import com.fabrice.go4lunch.repository.Repository;
 import com.fabrice.go4lunch.repository.RetrofitRepository;
+import com.fabrice.go4lunch.service.APIClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class RestaurantViewModel extends ViewModel {
     Repository mRepository;
     RetrofitRepository mRetrofitRepository;
     MutableLiveData<ArrayList<Restaurant>> mRestaurantList;
-    MutableLiveData <List<Result>> PlaceResultsMutableLiveData = new MutableLiveData<>();
+    MutableLiveData <List<Result>> PlaceResultsMutableLiveData;
 
 
     public MutableLiveData<ArrayList<Restaurant>> getMutableLiveDataRestaurant() {
@@ -31,9 +32,10 @@ public class RestaurantViewModel extends ViewModel {
         mRestaurantList = new MutableLiveData<>();
     }
 
-//    public void initListRestaurantMutableLiveData() {
-//        PlaceResultsMutableLiveData = mRetrofitRepository.getPlaceResultsLiveData();
-//    }
+    public void initListRestaurantMutableLiveData(Location location) {
+        MutableLiveData <List<Result>> restaurants = mRetrofitRepository.getPlaceResultsLiveData(location);
+        PlaceResultsMutableLiveData.setValue((List<Result>) restaurants);
+    }
 
 
 

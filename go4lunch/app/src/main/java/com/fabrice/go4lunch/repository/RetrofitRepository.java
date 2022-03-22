@@ -34,7 +34,6 @@ public class RetrofitRepository {
                 assert response.body() != null;
                 PlaceResultsMutableLiveData.setValue(response.body().getResults());
             }
-
             @Override
             public void onFailure(@NonNull Call<PlacesResults> call, @NonNull Throwable t) {
                 PlaceResultsMutableLiveData.setValue(null);
