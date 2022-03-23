@@ -12,14 +12,10 @@ import com.bumptech.glide.Glide;
 
 import com.fabrice.go4lunch.R;
 import com.fabrice.go4lunch.databinding.ItemRestaurantsBinding;
-import com.fabrice.go4lunch.model.Restaurant;
 import com.fabrice.go4lunch.model.Result;
 import com.fabrice.go4lunch.ui.DetailRestaurantActivity;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.ViewHolder> {
 

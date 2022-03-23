@@ -5,13 +5,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/buttonShowLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/list_rv"
-        android:text="SHOW NEARBY RESTAURANT" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_rv"
         android:layout_width="0dp"
@@ -19,6 +12,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonShowLocation"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_restaurants"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.fabrice.go4lunch.R;
 import com.fabrice.go4lunch.adapter.WorkMateAdapter;
-import com.fabrice.go4lunch.model.User;
 import com.fabrice.go4lunch.viewmodel.WorkmateViewModel;
 import com.fabrice.go4lunch.viewmodel.ViewModelFactory;
 
@@ -24,7 +23,7 @@ import java.util.Objects;
 
 public class WorkMateFragment extends Fragment {
 
-    ArrayList<User> mUsers = new ArrayList<>();
+//    ArrayList<User> mUsers = new ArrayList<>();
     WorkmateViewModel mWorkmateViewModel;
     RecyclerView mRecyclerView;
 
@@ -34,28 +33,28 @@ public class WorkMateFragment extends Fragment {
 
     @SuppressLint("NotifyDataSetChanged")
     private void initData(){
-        mWorkmateViewModel = new ViewModelProvider(requireActivity(), ViewModelFactory.getInstance()).get(WorkmateViewModel.class);
-        mWorkmateViewModel.initUser();
-        mWorkmateViewModel.getMutableLiveDataUser().observe(requireActivity(), users -> {
-            mUsers.clear();
-            mUsers.addAll(users);
-            Objects.requireNonNull(mRecyclerView.getAdapter()).notifyDataSetChanged();
-        });
+//        mWorkmateViewModel = new ViewModelProvider(requireActivity(), ViewModelFactory.getInstance()).get(WorkmateViewModel.class);
+//        mWorkmateViewModel.initUser();
+//        mWorkmateViewModel.getMutableLiveDataUser().observe(requireActivity(), users -> {
+//            mUsers.clear();
+//            mUsers.addAll(users);
+//            Objects.requireNonNull(mRecyclerView.getAdapter()).notifyDataSetChanged();
+//        });
     }
 
     private void initRecyclerView(View root) {
-        mRecyclerView = root.findViewById(R.id.rvWorkmates);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(layoutManager);
-        WorkMateAdapter mAdapter = new WorkMateAdapter(mUsers);
-        mRecyclerView.setAdapter(mAdapter);
+//        mRecyclerView = root.findViewById(R.id.rvWorkmates);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        mRecyclerView.setLayoutManager(layoutManager);
+//        WorkMateAdapter mAdapter = new WorkMateAdapter(mUsers);
+//        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_workmate, container, false);
-        initRecyclerView(root);
-        initData();
+//        initRecyclerView(root);
+//        initData();
         return root;
     }
 }

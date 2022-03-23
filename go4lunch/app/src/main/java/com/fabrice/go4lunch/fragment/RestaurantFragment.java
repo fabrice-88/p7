@@ -4,24 +4,18 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fabrice.go4lunch.R;
 import com.fabrice.go4lunch.adapter.RestaurantAdapter;
-import com.fabrice.go4lunch.model.Restaurant;
 import com.fabrice.go4lunch.model.Result;
-import com.fabrice.go4lunch.repository.RetrofitRepository;
-import com.fabrice.go4lunch.service.APIClient;
 import com.fabrice.go4lunch.viewmodel.RestaurantViewModel;
-import com.fabrice.go4lunch.viewmodel.ViewModelFactory;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.karumi.dexter.Dexter;
@@ -36,13 +30,11 @@ import java.util.Objects;
 
 public class RestaurantFragment extends Fragment {
 
-    ArrayList<Restaurant> mRestaurants = new ArrayList<>();
     ArrayList<Result> mResults = new ArrayList<>();
     RestaurantViewModel mRestaurantViewModel;
     RecyclerView mRecyclerView;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private Location mLocation;
-    private final RetrofitRepository mRetrofitRepository = new RetrofitRepository(APIClient.getGoogleMapAPI());
 
 
     public static RestaurantFragment newInstance() {
@@ -61,7 +53,8 @@ public class RestaurantFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 mLocation = task.getResult();
                                 if (mLocation != null) {
-                                    mRetrofitRepository.getPlaceResultsLiveData(mLocation).observe(requireActivity(), restaurants -> {
+                                    mRestaurantViewModel.initListRestaurantMutableLiveData(mLocation);
+                                    mRestaurantViewModel.mPlaceResultsMutableLiveData.observe(requireActivity(), restaurants -> {
                                         mResults.clear();
                                         mResults.addAll(restaurants);
                                         Objects.requireNonNull(mRecyclerView.getAdapter()).notifyDataSetChanged();

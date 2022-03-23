@@ -36,7 +36,7 @@ public class Result {
     @Expose
     private final String phone_number;
 
-    @SerializedName("address")
+    @SerializedName("formatted_address")
     @Expose
     private final String address;
 

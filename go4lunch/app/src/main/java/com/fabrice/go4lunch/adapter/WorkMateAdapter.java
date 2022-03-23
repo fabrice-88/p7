@@ -11,18 +11,17 @@ import com.bumptech.glide.Glide;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.fabrice.go4lunch.databinding.ItemWorkmateBinding;
-import com.fabrice.go4lunch.model.User;
 import com.fabrice.go4lunch.ui.DetailRestaurantActivity;
 
 import java.util.ArrayList;
 
 public class WorkMateAdapter extends RecyclerView.Adapter<WorkMateAdapter.ViewHolder>{
 
-    private final ArrayList<User> mUsers;
-
-    public WorkMateAdapter(ArrayList<User> users){
-        this.mUsers = users;
-    }
+//    private final ArrayList<User> mUsers;
+//
+//    public WorkMateAdapter(ArrayList<User> users){
+//        this.mUsers = users;
+//    }
 
     @NonNull
     @Override
@@ -33,23 +32,23 @@ public class WorkMateAdapter extends RecyclerView.Adapter<WorkMateAdapter.ViewHo
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final User user =  mUsers.get(position);
-        Glide.with(holder.mBinding.imgWorkmatePhoto.getContext())
-            .load(user.getPhotoUrl())
-            .apply(RequestOptions.circleCropTransform())
-            .into(holder.mBinding.imgWorkmatePhoto);
-        holder.mBinding.txtDescriptionWorkmate.setText((user.getFirstname()) + " is eating french ");
-        holder.mBinding.txtRestaurantName.setText("("+user.getRestaurantId()+")");
-        holder.mBinding.txtRestaurantName.setOnClickListener(v -> {
-            Intent intent = new Intent(holder.itemView.getContext(), DetailRestaurantActivity.class);
-            intent.putExtra("NAME_RESTAURANT", user.getRestaurantId());
-            holder.itemView.getContext().startActivity(intent);
-        });
+//        final User user =  mUsers.get(position);
+//        Glide.with(holder.mBinding.imgWorkmatePhoto.getContext())
+//            .load(user.getPhotoUrl())
+//            .apply(RequestOptions.circleCropTransform())
+//            .into(holder.mBinding.imgWorkmatePhoto);
+//        holder.mBinding.txtDescriptionWorkmate.setText((user.getFirstname()) + " is eating french ");
+//        holder.mBinding.txtRestaurantName.setText("("+user.getRestaurantId()+")");
+//        holder.mBinding.txtRestaurantName.setOnClickListener(v -> {
+//            Intent intent = new Intent(holder.itemView.getContext(), DetailRestaurantActivity.class);
+//            intent.putExtra("NAME_RESTAURANT", user.getRestaurantId());
+//            holder.itemView.getContext().startActivity(intent);
+//        });
     }
 
     @Override
     public int getItemCount() {
-        return mUsers.size();
+        return 1; //mUsers.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

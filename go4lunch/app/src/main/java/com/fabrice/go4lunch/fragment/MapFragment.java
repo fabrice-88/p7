@@ -50,7 +50,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private GoogleMap mMap;
     private RestaurantViewModel mRestaurantViewModel;
-    private final RetrofitRepository mRetrofitRepository = new RetrofitRepository(APIClient.getGoogleMapAPI());
     private static final float DEFAULT_ZOOM = 15;
     private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
 
@@ -88,7 +87,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                                 mLocation = task.getResult();
                                 if (mLocation != null) {
                                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), DEFAULT_ZOOM));
-                                    mRetrofitRepository.getPlaceResultsLiveData(mLocation).observe(requireActivity(), restaurants -> {
+                                    mRestaurantViewModel.initListRestaurantMutableLiveData(mLocation);
+                                    mRestaurantViewModel.mPlaceResultsMutableLiveData.observe(requireActivity(), restaurants -> {
                                         try {
                                             mMap.clear();
                                             for (Result r : restaurants) {
